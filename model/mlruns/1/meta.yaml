@@ -1,0 +1,4 @@
+artifact_location: file:///C:/Users/Apprenant/Desktop/vlib_ml_app/model/mlruns/1
+experiment_id: '1'
+lifecycle_stage: active
+name: reg-default-name

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Apprenant/Desktop/vlib_ml_app/model/mlruns/1/1ae828538b7d404dbf6ff12e35303288/artifacts
+end_time: 1647871877029
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 1ae828538b7d404dbf6ff12e35303288
+run_uuid: 1ae828538b7d404dbf6ff12e35303288
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1647871876884
+status: 3
+tags: []
+user_id: Apprenant
