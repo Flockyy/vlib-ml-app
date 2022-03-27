@@ -1,0 +1,13 @@
+{%extends 'base.html'%} {%block title%}Home Page {%endblock%} {%block content%}
+<body>
+  <div>
+    <h3>Weather in Lille</h3>
+    <br />
+    <h2>{{ temp }}°C</h2>
+    <br />
+    <h3>{{ weather }}</h3>
+    <br />
+    <h4>Feels like: {{feels_like}}°C</h4>
+  </div>
+  {%endblock%}
+</body>
