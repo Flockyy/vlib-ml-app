@@ -16,9 +16,9 @@
           {{ form.hidden_tag() }} 
 
           <div class="card-header">
-            <h5 class="title">Login</h5>
+            <h5 class="title d-flex justify-content-center">Login</h5>
 
-            <h6 class="card-category">
+            <h6 class="card-category d-flex justify-content-center">
                 {% if msg %}
                   <span class="text-danger">{{ msg | safe }}</span>
                 {% else %}
@@ -31,17 +31,17 @@
 
           <div class="card-body">
 
-              <div class="row">
+              <div class="row d-flex justify-content-center">
 
                 <div class="col-md-3 px-md-1">
-                  <div class="form-group">
+                  <div class="form-group ">
                     <label>Username</label>
                     {{ form.username(class="form-control") }}
                   </div>
                 </div>
 
               </div>
-              <div class="row">
+              <div class="row d-flex justify-content-center">
 
                 <div class="col-md-3 px-md-1">
                   <div class="form-group">
@@ -53,10 +53,14 @@
               </div>
               
           </div>
-          <div class="card-footer">
-            <button type="submit" name="login" class="btn btn-fill btn-primary">Login</button>
-            &nbsp; &nbsp;
-            Don't have an account? <a href="{{ url_for('authentication_blueprint.register') }}" class="text-primary">Create</a>
+          <div class="card-footer ">
+            <div class="d-flex justify-content-center">
+            <button type="submit" name="login" class="btn btn-fill btn-primary ">Login</button>
+            </div>
+            <div class="d-flex justify-content-center">
+            Don't have an account? 
+            <a href="{{ url_for('authentication_blueprint.register') }}" class="text-primary">Create</a>
+            </div>
           </div>
 
         </form>

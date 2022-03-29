@@ -1,0 +1,125 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Predictions {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-profile">
+            <div class="card-body" onload="SetDate()">
+                <h6 class="card-category text-gray">Predictions</h6>
+                <h4 class="card-title">
+                    <form action="" method="POST">
+                        <div>
+                            <input type="text" name="city" id="city" size="20" class="city" />
+                        </div>
+
+                        <div>
+                            <input type="datetime-local" name="Date" id="myDate" class="Date" placeholder="City" />
+                        </div>
+
+                        <input type="submit" value="Weather Today" class="submit" />
+                    </form>
+
+                    <button id="modalBtn" class="button">Predict</button>
+                    <!-- Modal Section -->
+                    <div id="simpleModal" class="bg-modal">
+                        <div class="modal-content">
+                            <div class="closeBtn">+</div>
+                            <form action="" method="post">
+                                <div><label for="Season"> Saison :</label></div>
+                                <div>
+                                    <select name="Season" id="Season" class="Season">
+                                        <option value="1">L'autome</option>
+                                        <option value="2">L'été</option>
+                                        <option value="3">Le printemps</option>
+                                        <option value="4">L'hiver</option>
+                                    </select>
+                                </div>
+
+                                <div><label for="weather">Temps:</label></div>
+
+                                <div>
+                                    <select name="weather" id="weather" class="weather">
+                                        <option value="1">
+                                            Clear, Few clouds, Partly cloudy, Partly cloudy.
+                                        </option>
+                                        <option value="2">
+                                            Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist.
+                                        </option>
+                                        <option value="3">
+                                            Light Snow, Light Rain, Thunderstorm, Scattered clouds, Light
+                                            Rain + Scattered clouds.
+                                        </option>
+                                        <option value="4">
+                                            Heavy Rain + Ice Pellets + Thunderstorm + Mist, Snow + Fog.
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <!-- <p>Workday :</p> -->
+                                <div>
+                                    <input type="radio" name="day" id="day_type1" value="Work Day" checked
+                                        class="radio" />
+                                    <label for="day_type1">Work Day</label>
+                                    <input type="radio" name="day" id="day_type2" value="Holiday" class="radio" />
+                                    <label for="day_type2">Holiday</label>
+                                </div>
+
+                                <div>
+                                    <input type="text" class="text" name="tempre" id="tempre"
+                                        placeholder="Température réelle(°C)" size="4" />
+                                </div>
+
+                                <div>
+                                    <input type="text" class="text" name="temp" id="temp"
+                                        placeholder="Température ressentie(°C)" size="4" />
+                                </div>
+
+                                <div>
+                                    <input type="text" class="text" name="humid" id="humid" placeholder="Humidité(%)"
+                                        size="4" />
+                                </div>
+
+                                <div>
+                                    <input type="text" class="text" name="vent" id="vent"
+                                        placeholder="Vitesse du vent(kmph)" size="15" />
+                                </div>
+
+                                <div><input type="submit" value="Soumettre" /></div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </h4>
+                <a href="/" class="btn btn-primary btn-round">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+<script type="text/javascript">
+    function SetDate() {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day + "T" + hour + ":00";
+        console.log(today);
+        document.getElementById("myDate").value = today;
+    }
+</script>
+<script src="../static/app.js"></script>
+{% block javascripts %}{% endblock javascripts %}

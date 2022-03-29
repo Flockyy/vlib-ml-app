@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enter City</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <script type="text/javascript">
+      function SetDate() {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day + "T" + hour + ":00";
+        console.log(today);
+        document.getElementById("myDate").value = today;
+      }
+    </script>
+  </head>
+  
+</html>

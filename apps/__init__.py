@@ -2,11 +2,11 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
-
+import pickle
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-
+model = pickle.load(open('model/xgb_best.pkl', 'rb'))
 
 def register_extensions(app):
     db.init_app(app)
