@@ -45,8 +45,8 @@ def home_page():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login_page():
-    name = request.form['username']
-    password = request.form['password']
+    name = request.form.get('username')
+    password = request.form.get('password')
     
     user = Users.query.filter_by(username=name).first()
     if user and check_password_hash(user.password_hash, password):
@@ -56,7 +56,7 @@ def login_page():
         return redirect(url_for('weather'))
     else:
         flash('Username ou mot de passe invalide', category="danger")
-        return render_template('login.html')
+        return render_template('login.html', name=name, password=password)
 
 @app.route("/home", methods = ['GET', 'POST'])
 @login_required
@@ -107,3 +107,10 @@ def city_info():
 #     #     return f'Error getting temperature for {city}' 
 #     return f'Today is {str(date)} in {city}'
 
+@app.route('/logout')
+def logout_page():
+    """[Allows to disconnect the user and redirect to the home page]
+    """
+    logout_user()
+    flash('Vous êtes correctement déconnecté', category="success")
+    return redirect(url_for('home_page'))
