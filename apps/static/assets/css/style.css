@@ -10,16 +10,16 @@
     align-items: center;
     z-index: 1;
     left: 0;
-    overflow: auto;
+    
 
 }
 
 .modal-content {
-    width: 30%;
-    height: 50%;
-    background-color: white;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(10, 3, 3);
     border-radius: 4px;
-    text-align: left;
+    text-align: center;
     padding: 20px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2),
     0 7px 20px 0 rgba(0, 0, 0, 0.17);
@@ -27,6 +27,9 @@
     position: relative;
     animation-name: modalopen;
     animation-duration: 1s;
+    max-width: 66.66667%;
+    flex: 0 0 66.66667%;
+    overflow: scroll;
 }
 
 @keyframes modalopen {
@@ -35,6 +38,16 @@
     }
     to{
         opacity: 1;
+    }
+}
+
+@keyframes modalclose {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
 
@@ -61,14 +74,15 @@
 }
 
 select.weather {
-    width: 55%;
+    width: 40%;
     margin: 15px auto;
 
 }
 select.Season {
     width: 40%;
     margin: 15px auto;
-
+    display: inline-block;
+    margin-bottom: 0.5rem;
 }
 
 
@@ -79,13 +93,15 @@ input.text {
 
 input.radio {
     size: 20px;
+    margin: 15px auto;
+    color:rgba(0, 0, 0, 0.7)
 }
 
 .closeBtn {
     position: absolute;
-    top: 0;
+    top: 10;
     transform: rotate(45deg);
-    right: 14px;
+    right: 10px;
     cursor: pointer;
     font-size: 42px;
     color: #ccc;
