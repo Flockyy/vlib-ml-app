@@ -384,7 +384,6 @@ demo = {
       options: gradientChartOptionsConfigurationWithTooltipPurple
     });
 
-
     var ctxGreen = document.getElementById("chartLineGreen").getContext("2d");
 
     var gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
@@ -421,10 +420,13 @@ demo = {
 
     });
 
-
+    // var data = require("fs").readFileSync("../data/total_user.csv", "utf8")
 
     var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
+    var chart_data = [79884, 99113, 133501, 167402, 200147, 220733, 214617, 213516, 212529, 207434, 176440, 160160];
+
+    // var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    // var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
 
 
     var ctx = document.getElementById("chartBig1").getContext('2d');

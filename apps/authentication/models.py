@@ -12,6 +12,13 @@ class Users(db.Model, UserMixin):
     username = db.Column(db.String(64), unique=True)
     email = db.Column(db.String(64), unique=True)
     password = db.Column(db.LargeBinary)
+    # fname = db.Column(db.String, nullable=True)
+    # lname = db.Column(db.String, nullable=True)
+    # address = db.Column(db.String, nullable=True)
+    # city = db.Column(db.String, nullable=True)
+    # country = db.Column(db.String, nullable=True)
+    # postcode = db.Column(db.String, nullable=True)
+    # aboutme = db.Column(db.String, nullable=True)
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
@@ -29,10 +36,11 @@ class Users(db.Model, UserMixin):
 
     def __repr__(self):
         return str(self.username)
-        
+
 class Predicitions(db.Model):
+    
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
-    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
+    # user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
     Datetime = db.Column(db.String(), nullable=False)
     Season = db.Column(db.String(), nullable=False)
     Weather = db.Column(db.String(), nullable=False)
@@ -48,7 +56,7 @@ class Predicitions(db.Model):
     def json(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
+            # 'user_id': self.user_id,
             'Datetime': self.Datetime,
             'Season': self.Season,
             'Weather': self.Weather,

@@ -3,9 +3,12 @@ from flask import render_template, request, url_for, flash, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from jinja2 import TemplateNotFound
 
+import numpy as np
 import configparser
 import os
 import requests
+import model
+
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -114,7 +117,7 @@ def weather():
 def city_info():
     return render_template('index.html')
 
-# @app.route("/predict")
+# @blueprint.route('/predict')
 # def predict():
     
 #     float_features = [float(x) for x in request.form.values()]
