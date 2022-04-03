@@ -1,13 +1,10 @@
 from apps.home import blueprint
+from decouple import config
 from flask import render_template, request, url_for, flash, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from jinja2 import TemplateNotFound
 
-import numpy as np
-import configparser
-import os
 import requests
-import model
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -56,10 +53,8 @@ def get_segment(request):
 
 #setting up weather api_key
 def get_api_key():
-    config = configparser.ConfigParser()
-    path = '/'.join((os.path.abspath(__file__).replace('\\', '/')).split('/')[:-1])
-    config.read(os.path.join(path, 'config.ini'))
-    return config['openweather']['api']
+    api_key = config('API')
+    return api_key
 
 def get_weather_results(city, api_key):
     url =f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
@@ -72,14 +67,14 @@ def get_weather_results(city, api_key):
 def preds_page():
     city = 'Lille' #fill in the city logic
     # date = request.form['Date']
-    # date = pd.to_datetime(date)
+    # dat = pd.to_datetime(date)
     api_key = get_api_key()
     data = get_weather_results(city, api_key)
     temp = '{0:.2f}'.format(data['main']['temp'])
     feels_like = '{0:.2f}'.format(data['main']['feels_like'])
     weather = data['weather'][0]['main']
-    print(weather)
-    return render_template('page-preds.html', weather=weather, feels_like=feels_like, temp=temp, city = city)
+    print(city)
+    return render_template('home/page-preds.html', weather=weather, feels_like=feels_like, temp=temp, city = city)
     
 
 # @blueprint.route('/login', methods=['POST', 'GET'])
