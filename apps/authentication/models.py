@@ -37,14 +37,6 @@ class Users(db.Model, UserMixin):
 
     def __repr__(self):
         return str(self.username)
-<<<<<<< HEAD
-    
-    def json(self):
-        return {'city': self.city}
-        
-=======
-
->>>>>>> a059b9bf799688647ab06b8e86efe5566e7c00cb
 class Predicitions(db.Model):
     
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
