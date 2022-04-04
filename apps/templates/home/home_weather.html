@@ -1,14 +1,287 @@
-{%extends "layouts/base.html" %} 
-{%block title%} Weather {%endblock%} {%block content%}
-<body>
-  <div>
-    <h3>Weather in Lille</h3>
-    <br />
-    <h2>{{ temp }}°C</h2>
-    <br />
-    <h3>{{ weather }}</h3>
-    <br />
-    <h4>Feels like: {{feels_like}}°C</h4>
+{%extends "layouts/base.html" %} {%block title%} Weather {%endblock%}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<link href="/static/assets/css/weather.css" rel="stylesheet" />
+<link href="/static/assets/css/style.css" rel="stylesheet" /> {% endblock
+stylesheets %} {% block content %}
+<div class="container">
+  <div class="weather-side">
+    <div class="weather-gradient"></div>
+
+    <div class="date-container">
+      <h2 id="date-dayname" class="date-dayname">{{day}}</h2>
+      <span id="date-day" class="date-day">{{ date }}</span>
+      <i class="location-icon" data-feather="map-pin"></i
+      ><span class="location">{{city}}, FR</span>
+    </div>
+    <div class="weather-container">
+      <!-- <i class="weather-icon" data-feather="sun"></i> -->
+      <div class="condition">
+        {% if weather == 'Clouds' %}
+        <div class="weather-cloud">
+          <div class="cloud"></div>
+          <div class="cloud"></div>
+        </div>
+        {% elif weather == 'Thunder' %}
+        <div class="cloud"></div>
+        <div class="lightning">
+          <div class="bolt"></div>
+          <div class="bolt"></div>
+        </div>
+        {% elif weather == 'Drizzle' or weather == 'Rain'%}
+        <div class="weather-rain">
+          <div class="cloud"></div>
+          <div class="rain"></div>
+          <div class="rain"></div>
+          <div class="rain"></div>
+          <div class="rain"></div>
+        </div>
+        {% elif weather == 'Atmosphere' %}
+        <div class="weatherIcon">
+          <div class="fog">
+            <div class="inner"></div>
+          </div>
+        </div>
+        {% elif weather == 'Clear' and time == 'day'%}
+        <div class="weather-sun">
+          <div class="sun">
+            <div class="rays"></div>
+            <div class="rays"></div>
+            <div class="rays"></div>
+            <div class="rays"></div>
+          </div>
+        </div>
+          {% elif weather == 'Clear' and time == 'night'%}
+          <div class="weather-moon">
+            <div class="moon"></div>
+          </div>
+          {% elif weather == 'Snow' %}
+            <div class="weather-snow">
+              <div class="snow">
+                <div class="f"></div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+         <div class="description">
+            <h1 class="weather-temp">{{temp}}°C</h1>
+            <h3 class="weather-desc">{{weather}}</h3>
+            <h5 class="weather-desc">{{desc}}</h5>
+          </div>
+      </div>
+    </div>
+    </div>
+    <div class="info-side">
+      <div class="today-info-container">
+        <div class="today-info">
+          <div class="precipitation">
+            <span class="title">Feels Like</span
+            ><span class="value">{{feels_like}}°C</span>
+            <div class="clear"></div>
+          </div>
+          <div class="humidity">
+            <span class="title">HUMIDITY</span
+            ><span class="value">{{humidity}} %</span>
+            <div class="clear"></div>
+          </div>
+          <div class="wind">
+            <span class="title">WIND</span
+            ><span class="value">{{wind}} km/h</span>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="week-container">
+        <ul class="week-list">
+          <li class="active">
+            <i class="day-icon" data-feather="sun"></i
+            ><span class="day-name">Tue</span><span class="day-temp">29°C</span>
+          </li>
+          <li>
+            <i class="day-icon" data-feather="cloud"></i
+            ><span class="day-name">Wed</span><span class="day-temp">21°C</span>
+          </li>
+          <li>
+            <i class="day-icon" data-feather="cloud-snow"></i
+            ><span class="day-name">Thu</span><span class="day-temp">08°C</span>
+          </li>
+          <li>
+            <i class="day-icon" data-feather="cloud-rain"></i
+            ><span class="day-name">Fri</span><span class="day-temp">19°C</span>
+          </li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+       <div class="location-container">
+        <button id="modalBtn" class="location-button">
+          <i data-feather="map-pin"></i><span>Predict</span>
+        </button>
+      </div>
+    </div>
+    <div id="simpleModal" class="bg-modal">
+      <div class="modal-content">
+        <h3 class="row2">Enter Parameters</h3>
+        <div class="closeBtn">+</div>
+        <form action="/preds" method="post">
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <label for="Season"> Saison</label>
+              <select name="Season" id="Season" class="form-control">
+                <option value="1">L'autome</option>
+                <option value="2">L'été</option>
+                <option value="3">Le printemps</option>
+                <option value="4">L'hiver</option>
+              </select>
+            </div>
+          </div>
+          <br />
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <label for="weather">Temps</label>
+              <select name="weather" id="weather" class="form-control">
+                <option value="1">
+                  Clear, Few clouds, Partly cloudy, Partly cloudy.
+                </option>
+                <option value="2">
+                  Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist.
+                </option>
+                <option value="3">
+                  Light Snow, Light Rain, Thunderstorm, Scattered clouds, Light
+                  Rain + Scattered clouds.
+                </option>
+                <option value="4">
+                  Heavy Rain + Ice Pellets + Thunderstorm + Mist, Snow + Fog.
+                </option>
+              </select>
+            </div>
+          </div>
+          <br />
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <input
+                type="radio"
+                name="day"
+                id="day_type1"
+                value="Work Day"
+                checked
+                class="radio"
+              />
+              <label for="day_type1">Work Day</label> &nbsp;
+              <input
+                type="radio"
+                name="day"
+                id="day_type2"
+                value="Holiday"
+                class="radio"
+              />
+              <label for="day_type2">Holiday</label>
+            </div>
+          </div>
+          <br />
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <input
+                type="text"
+                class="form-control"
+                name="tempre"
+                id="tempre"
+                placeholder="Température réelle(°C)"
+                size="4"
+              />
+            </div>
+          </div>
+          <br />
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <input
+                type="text"
+                class="form-control"
+                name="humid"
+                id="humid"
+                placeholder="Humidité(%)"
+                size="4"
+              />
+            </div>
+          </div>
+          <br />
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <input
+                type="text"
+                class="form-control"
+                name="vent"
+                id="vent"
+                placeholder="Vitesse du vent (kmph)"
+                size="15"
+              />
+            </div>
+          </div>
+          <br />
+          
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <label for="myDate">Date & Time</label>
+              <input
+                type="datetime-local"
+                name="Date"
+                id="myDate"
+                class="form-control"
+              />
+            </div>
+          </div><br>
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <div class="row">
+                <input
+                  type="submit"
+                  value="Soumettre"
+                  class="location-button"
+                />
+              </div>
+            </div>
+            <br />
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    <!-- Modal Section -->
+    
+
+    <script>
+      document.getElementById("date-day").textContent = date;
+    </script>
+    {% endblock content %} {% block datescript %}
+    <script type="text/javascript">
+      function SetDate() {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+
+        date.setD;
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day + "T" + hour + ":00";
+        console.log(today);
+        document.getElementById("myDate").value = today;
+      }
+    </script>
+    {%endblock%} {% block javascripts %}
+    <script src="/static/assets/js/weather.js"></script>
+    <script src="/static/assets/js/app.js"></script>
+    {% endblock javascripts %}
   </div>
-  {%endblock%}
-</body>
+</div>

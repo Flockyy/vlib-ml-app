@@ -74,36 +74,3 @@ def weather():
 
     
     
-
-    # return render_template('index.html', prediction_text = "The expect number of customers is {}".format(prediction))
-
-@app.route("/city", methods=['POST', 'GET'])
-@login_required
-def city_info():
-    
-    return render_template('index.html')
-# @app.route("/predict")
-# def predict():
-    
-#     # float_features = [float(x) for x in request.form.values()]
-#     # features = [np.array(float_features)]
-#     # prediction = model.predict(features)
-    
-#     # #call API and convert response into Pyhton dictionary
-#     # url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={API_KEY}'
-#     # response = requests.get(url).json()
-    
-#     # #error is unknown city name or invalid api key
-#     # if response.get('cod') != 200:
-#     #     message = response.get('message', '')
-#     #     return f'Error getting weather details for {city}. Error message = {message}'
-    
-#     # #get current temperature and convert it to °C 
-#     # current_temperature = response.get('main', {}).get('temp')
-#     # if current_temperature:
-#     #     current_temperature_celcius = round(current_temperature - 273.15, 2)   
-#     #     return f'Current temperature in {city} is {current_temperature} &#8451;'
-#     # else:
-#     #     return f'Error getting temperature for {city}' 
-#     return f'Today is {str(date)} in {city}'
-

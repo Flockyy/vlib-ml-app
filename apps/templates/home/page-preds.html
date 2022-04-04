@@ -1,164 +1,30 @@
 {% extends "layouts/base.html" %} {% block title %} Predictions {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+{% block stylesheets %}
+<link href="/static/assets/css/style.css" rel="stylesheet" />
+{% endblock stylesheets %} {% block content %}
 
 <div class="row">
   <div class="col-md-8">
     <div class="card card-profile">
-      <div class="card-body">
-        <h3 class="card-category text-gray">Predictions</h3>
-        <h4 class="card-title">
-          <form action="" method="POST">
-            <div class="col-md-3 px-md-1">
-              <label for="city">City</label>
-              <input
-                type="text"
-                name="city"
-                id="city"
-                size="20"
-                class="form-control"
-              />
-            </div>
-
-            <div class="col-md-3 px-md-1">
-              <label for="myDate">Date & Time</label>
-              <input
-                type="datetime-local"
-                name="Date"
-                id="myDate"
-                class="form-control"
-                placeholder="City"
-              />
-            </div>
-
-            <input
-              type="submit"
-              value="Weather Today"
-              class="btn btn-primary btn-round"
-            />
-          </form>
-
-          <button id="modalBtn" class="btn btn-primary btn-round">
-            Predict
-          </button>
-          <!-- Modal Section -->
-          <div id="simpleModal" class="bg-modal">
-            <div class="modal-content">
-              <div class="closeBtn">+</div>
-              <form action="" method="post">
-                <div>
-                  <label for="Season"> Saison</label>
-                </div>
-                <div class="col-md-3 px-md-1">
-                  <select name="Season" id="Season" class="form-control">
-                    <option value="1">L'autome</option>
-                    <option value="2">L'été</option>
-                    <option value="3">Le printemps</option>
-                    <option value="4">L'hiver</option>
-                  </select>
-                </div>
-
-                <div><label for="weather">Temps</label></div>
-
-                <div class="col-md-3 px-md-1">
-                  <select name="weather" id="weather" class="form-control">
-                    <option value="1">
-                      Clear, Few clouds, Partly cloudy, Partly cloudy.
-                    </option>
-                    <option value="2">
-                      Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds,
-                      Mist.
-                    </option>
-                    <option value="3">
-                      Light Snow, Light Rain, Thunderstorm, Scattered clouds,
-                      Light Rain + Scattered clouds.
-                    </option>
-                    <option value="4">
-                      Heavy Rain + Ice Pellets + Thunderstorm + Mist, Snow +
-                      Fog.
-                    </option>
-                  </select>
-                </div>
-
-                <!-- <p>Workday :</p> -->
-                <div class="col-md-3 px-md-1">
-                  <input
-                    type="radio"
-                    name="day"
-                    id="day_type1"
-                    value="Work Day"
-                    checked
-                    class="radio"
-                  />
-                  <label for="day_type1">Work Day</label>
-                  <input
-                    type="radio"
-                    name="day"
-                    id="day_type2"
-                    value="Holiday"
-                    class="radio"
-                  />
-                  <label for="day_type2">Holiday</label>
-                </div>
-
-                <div class="col-md-3 px-md-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="tempre"
-                    id="tempre"
-                    placeholder="Température réelle(°C)"
-                    size="4"
-                  />
-                </div>
-
-                <div class="col-md-3 px-md-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="temp"
-                    id="temp"
-                    placeholder="Température ressentie(°C)"
-                    size="4"
-                  />
-                </div>
-
-                <div class="col-md-3 px-md-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="humid"
-                    id="humid"
-                    placeholder="Humidité(%)"
-                    size="4"
-                  />
-                </div>
-
-                <div class="col-md-3 px-md-1">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="vent"
-                    id="vent"
-                    placeholder="Vitesse du vent(kmph)"
-                    size="15"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="submit"
-                    value="Soumettre"
-                    class="btn btn-primary btn-round"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </h4>
-        <a href="/" class="btn btn-primary btn-round">Home</a>
+      <div class="card-body d-flex justify-content-center">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Season</th>
+              <th>Weather</th>
+              <th>Workday/Holiday</th>
+              <th>Temperature</th>
+              <th>Humidity</th>
+              <th>Windspeed</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
+      <div class="card-body"></div>
     </div>
   </div>
 </div>

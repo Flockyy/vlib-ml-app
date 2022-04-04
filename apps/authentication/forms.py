@@ -21,6 +21,9 @@ class CreateAccountForm(FlaskForm):
     email = StringField('Email',
                       id='email_create',
                       validators=[DataRequired(), Email()])
+    city = StringField('City',
+                      id='city_create',
+                      validators=[DataRequired()])
     password = PasswordField('Password',
                              id='pwd_create',
                              validators=[DataRequired()])

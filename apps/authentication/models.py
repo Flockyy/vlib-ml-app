@@ -11,6 +11,7 @@ class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True)
     email = db.Column(db.String(64), unique=True)
+    city = db.Column(db.String(64), unique=False)
     password = db.Column(db.LargeBinary)
 
     def __init__(self, **kwargs):
@@ -29,6 +30,9 @@ class Users(db.Model, UserMixin):
 
     def __repr__(self):
         return str(self.username)
+    
+    def json(self):
+        return {'city': self.city}
         
 class Predicitions(db.Model):
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
@@ -43,7 +47,7 @@ class Predicitions(db.Model):
     Windspeed = db.Column(db.Float(), nullable=False)
     
     def __repr__(self):
-        return f'Prediction id: {self.user_id}'
+        return f'Prediction id: {self.id}'
     
     def json(self):
         return {
