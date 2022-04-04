@@ -69,22 +69,16 @@ def get_weather_results(city, api_key):
 @blueprint.route('/preds', methods=['POST', 'GET'])
 @login_required
 def preds_page():
-    city = 'Lille' #fill in the city logic
-    # date = request.form['Date']
-    # dat = pd.to_datetime(date)
-    api_key = get_api_key()
-    data = get_weather_results(city, api_key)
-    temp = '{0:.2f}'.format(data['main']['temp'])
-    feels_like = '{0:.2f}'.format(data['main']['feels_like'])
-    weather = data['weather'][0]['main']
-    print(city)
-    return render_template('home/page-preds.html', weather=weather, feels_like=feels_like, temp=temp, city = city)
-    
-
-# @blueprint.route('/login', methods=['POST', 'GET'])
-# def login_page():
-#     name = request.form['username']
-#     password = request.form['password']
+    date = request.form['Date']
+    date = pd.to_datetime(date)
+    season = request.form['Season']
+    temps = request.form['weather']
+    day = request.form['day'] #work out logic for workday/holiday
+    tempre = request.form['tempre']
+    humid = request.form['humid']
+    vent = request.form['vent']
+    print(day)
+    return render_template('home/page-preds.html')
     
 
 @blueprint.route('/weather', methods=['POST', 'GET'])
@@ -102,8 +96,7 @@ def weather():
     feels_like = '{0:.2f}'.format(data['main']['feels_like'])
     weather = data['weather'][0]['main']
     print(weather)
-    return render_template('results.html', weather=weather, feels_like=feels_like, temp=temp, city = city)
-    # return render_template('index.html', prediction_text = "The expect number of customers is {}".format(prediction))
+    return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city)
 
 @blueprint.route('/city', methods=['POST', 'GET'])
 @login_required
