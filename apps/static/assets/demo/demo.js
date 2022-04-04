@@ -358,7 +358,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(119,52,169,0)'); //purple colors
 
     var data = {
-      labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: ['1', '2', '3', '4', '5', '6', '7'],
       datasets: [{
         label: "Data",
         fill: true,
@@ -374,7 +374,7 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [80, 100, 70, 80, 120, 80],
+        data: [115, 123, 108, 29, 41, 80, 84],
       }]
     };
 
@@ -383,7 +383,6 @@ demo = {
       data: data,
       options: gradientChartOptionsConfigurationWithTooltipPurple
     });
-
 
     var ctxGreen = document.getElementById("chartLineGreen").getContext("2d");
 
@@ -394,7 +393,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
 
     var data = {
-      labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV'],
+      labels: ['AOU', 'SEPT', 'OCT', 'NOV', 'DEC'],
       datasets: [{
         label: "My First dataset",
         fill: true,
@@ -410,7 +409,11 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [90, 27, 60, 12, 80],
+        data: [28290
+          ,27590
+          ,20928
+          ,15198
+         ,9621],
       }]
     };
 
@@ -421,11 +424,19 @@ demo = {
 
     });
 
-
-
     var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var chart_data = [100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100];
-
+    var chart_data = [23552, 
+      32844, 
+      38735, 
+      50517, 
+      79713,
+      89776,
+      92848
+      ,83296
+      ,79104
+      ,79522
+      ,70889
+      ,61183];
 
     var ctx = document.getElementById("chartBig1").getContext('2d');
 
@@ -468,7 +479,18 @@ demo = {
     });
     
     $("#1").click(function() {
-      var chart_data = [80, 120, 105, 110, 95, 105, 90, 100, 80, 95, 70, 120];
+      var chart_data = [56332
+        ,66269
+        ,94766
+        ,116885
+        ,120434
+        ,130957
+        ,121769
+        ,130220
+        ,133425
+        ,127912
+        ,105551
+        ,98977];
       var data = myChartData.config.data;
       data.datasets[0].data = chart_data;
       data.labels = chart_labels;
@@ -500,7 +522,7 @@ demo = {
         display: false
       },
       data: {
-        labels: ['USA', 'GER', 'AUS', 'UK', 'RO', 'BR'],
+        labels: ['Printemps', 'Eté', 'Automne', 'Hiver'],
         datasets: [{
           label: "Countries",
           fill: true,
@@ -510,7 +532,7 @@ demo = {
           borderWidth: 2,
           borderDash: [],
           borderDashOffset: 0.0,
-          data: [53, 20, 10, 80, 100, 45],
+          data: [312498, 588282, 640662, 544034],
         }]
       },
       options: gradientBarChartConfiguration
