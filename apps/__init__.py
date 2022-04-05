@@ -6,7 +6,7 @@ import pickle
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-model = pickle.load(open('model/xgb_best.pkl', 'rb'))
+# model = pickle.load(open('model/xgb_best.pkl', 'rb'))
 
 def register_extensions(app):
     db.init_app(app)
