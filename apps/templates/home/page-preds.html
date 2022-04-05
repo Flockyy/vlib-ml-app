@@ -5,7 +5,7 @@
 <link href="/static/assets/css/style.css" rel="stylesheet" />
 {% endblock stylesheets %} {% block content %}
 
-<div class="row">
+<div class="row d-flex justify-content-center">
   <div class="col-md-8">
     <div class="card card-profile">
       <div class="card-body d-flex justify-content-center">
@@ -19,6 +19,7 @@
               <th>Temperature</th>
               <th>Humidity</th>
               <th>Windspeed</th>
+              <th>Expected Users</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -27,6 +28,10 @@
       <div class="card-body"></div>
     </div>
   </div>
+</div>
+
+<div>
+  <p>{{Pred}}</p>
 </div>
 
 {% endblock content %} {% block datescript %}

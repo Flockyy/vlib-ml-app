@@ -393,7 +393,7 @@ demo = {
     gradientStroke.addColorStop(0, 'rgba(66,134,121,0)'); //green colors
 
     var data = {
-      labels: ['AOU', 'SEPT', 'OCT', 'NOV', 'DEC'],
+      labels: ['AUG', 'SEPT', 'OCT', 'NOV', 'DEC'],
       datasets: [{
         label: "My First dataset",
         fill: true,

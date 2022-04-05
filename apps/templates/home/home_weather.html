@@ -128,10 +128,10 @@ stylesheets %} {% block content %}
             <div class="col-md-4 px-md-1">
               <label for="Season"> Saison</label>
               <select name="Season" id="Season" class="form-control">
-                <option value="1">L'autome</option>
-                <option value="2">L'été</option>
+                <option value="2">L'autome</option>
+                <option value="4">L'été</option>
                 <option value="3">Le printemps</option>
-                <option value="4">L'hiver</option>
+                <option value="1">L'hiver</option>
               </select>
             </div>
           </div>
@@ -201,9 +201,23 @@ stylesheets %} {% block content %}
               <input
                 type="text"
                 class="form-control"
+                name="atemp"
+                id="atemp"
+                placeholder="Température resenti (°C)"
+                size="4"
+              />
+            </div>
+          </div>
+          <br />
+
+          <div class="row2">
+            <div class="col-md-4 px-md-1">
+              <input
+                type="text"
+                class="form-control"
                 name="humid"
                 id="humid"
-                placeholder="Humidité(%)"
+                placeholder="Humidité (%)"
                 size="4"
               />
             </div>
