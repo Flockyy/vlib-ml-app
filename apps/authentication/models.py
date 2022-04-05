@@ -40,7 +40,7 @@ class Users(db.Model, UserMixin):
 class Predicitions(db.Model):
     
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
-    # user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
     Datetime = db.Column(db.String(), nullable=False)
     Season = db.Column(db.String(), nullable=False)
     Weather = db.Column(db.String(), nullable=False)
@@ -56,7 +56,7 @@ class Predicitions(db.Model):
     def json(self):
         return {
             'id': self.id,
-            # 'user_id': self.user_id,
+            'user_id': self.user_id,
             'Datetime': self.Datetime,
             'Season': self.Season,
             'Weather': self.Weather,

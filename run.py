@@ -17,7 +17,7 @@ try:
     app_config = config_dict[get_config_mode.capitalize()]
 
 except KeyError:
-    exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
+    exit('Error: Invalid <config_mode>. Expected values [Debug, Production]')
 
 app = create_app(app_config)
 Migrate(app, db)

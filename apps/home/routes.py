@@ -4,6 +4,7 @@ from decouple import config
 from flask import render_template, request, url_for, flash, redirect
 from flask_login import login_required, login_user, logout_user, current_user
 from jinja2 import TemplateNotFound
+import pickle
 import pandas as pd
 from datetime import date, datetime
 import sys
@@ -103,27 +104,17 @@ def weather():
 def city_info():
     return render_template('index.html')
 
-# @blueprint.route('/predict')
-# def predict():
+@blueprint.route('/predict')
+def predict():
     
-#     float_features = [float(x) for x in request.form.values()]
-#     features = [np.array(float_features)]
-#     prediction = model.predict(features)
-    
-#     #call API and convert response into Pyhton dictionary
-#     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={API_KEY}'
-#     response = requests.get(url).json()
-    
-#     #error is unknown city name or invalid api key
-#     if response.get('cod') != 200:
-#         message = response.get('message', '')
-#         return f'Error getting weather details for {city}. Error message = {message}'
-    
-#     #get current temperature and convert it to °C 
-#     current_temperature = response.get('main', {}).get('temp')
-#     if current_temperature:
-#         current_temperature_celcius = round(current_temperature - 273.15, 2)   
-#         return f'Current temperature in {city} is {current_temperature} &#8451;'
-#     else:
-#         return f'Error getting temperature for {city}' 
-#     return f'Today is {str(date)} in {city}'
+    # Load the model
+    with open('../../model/lgb_best.pkl', 'rb') as f:
+        model = pickle.load(f)
+
+    # Collect features values
+    features = request.form['Season']
+
+    # Prediction
+    pred = model.predict(features)
+    print(pred)
+    return render_template('home/page-pred.html', prediction=pred)
