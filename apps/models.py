@@ -38,10 +38,11 @@ class Users(db.Model, UserMixin):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
-class Predicitions(db.Model):
+        
+class Predictions(db.Model):
     
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
-    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer(), db.ForeignKey('Users.id'), nullable=False)
     Datetime = db.Column(db.String(), nullable=False)
     Season = db.Column(db.String(), nullable=False)
     Weather = db.Column(db.String(), nullable=False)
@@ -50,6 +51,7 @@ class Predicitions(db.Model):
     Atemperature = db.Column(db.Float(), nullable=False)
     Humidity = db.Column(db.Float(), nullable=False)
     Windspeed = db.Column(db.Float(), nullable=False)
+    Predicted = db.Column(db.Float(), nullable=False)
     
     def __repr__(self):
         return f'Prediction id: {self.id}'
@@ -65,7 +67,8 @@ class Predicitions(db.Model):
             'Temperature': self.Temperature,
             'Atemperature': self.Atemperature,
             'Humidity': self.Humidity,
-            'Windspeed': self.Windspeed
+            'Windspeed': self.Windspeed,
+            'Predicted': self.Predicted
         }
     
     @classmethod
@@ -78,7 +81,7 @@ class Predicitions(db.Model):
     @classmethod
     def get_all_in_list_with_user_name(cls):
         pred_list = []
-        for pred in cls.query.join(Users).with_entities(Users.first_name, cls.Datetime, cls.Season, cls.Weather, cls.Workday, cls.Temperature, cls.Atemperature, cls.Humidity, cls.Windspeed).all():
+        for pred in cls.query.join(Users).with_entities(Users.first_name, cls.Datetime, cls.Season, cls.Weather, cls.Workday, cls.Temperature, cls.Atemperature, cls.Humidity, cls.Windspeed, cls.Predicted).all():
             pred_list.append(pred)
         return pred_list
     
@@ -89,7 +92,8 @@ class Predicitions(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
-
+        
+        
 @login_manager.user_loader
 def user_loader(id):
     return Users.query.filter_by(id=id).first()
@@ -100,5 +104,3 @@ def request_loader(request):
     username = request.form.get('username')
     user = Users.query.filter_by(username=username).first()
     return user if user else None
-
-
