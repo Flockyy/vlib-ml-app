@@ -6,11 +6,19 @@ from flask_login import login_required, login_user, logout_user, current_user
 from jinja2 import TemplateNotFound
 import pickle
 import pandas as pd
-from datetime import date, datetime
+from datetime import datetime, date
 import sys
 import pickle
 import requests
 import numpy as np
+
+import locale
+locale.getlocale()
+('fr_FR', 'UTF-8')
+
+locale.setlocale(locale.LC_TIME, 'fr_FR')
+'fr_FR'
+
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -64,7 +72,8 @@ def get_api_key():
     return api_key
 
 def get_weather_results(city, api_key):
-    url =f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
+    lang = 'fr'
+    url =f'https://api.openweathermap.org/data/2.5/weather?q={city}&lang={lang}&appid={api_key}&units=metric'
     response = requests.get(url)
     return response.json()
 
@@ -136,6 +145,7 @@ def weather():
         time = 'day'
     else:
         time = 'night'
+    print(data)
     return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city, date=day, day =day_name, desc=desc, humidity=humidity, wind=wind, time=time)
 
 @blueprint.route('/city', methods=['POST', 'GET'])
