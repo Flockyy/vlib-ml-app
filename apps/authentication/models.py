@@ -44,15 +44,15 @@ class Predictions(db.Model):
     
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('Users.id'), nullable=False)
-    Datetime = db.Column(db.String(), nullable=False)
-    Season = db.Column(db.String(), nullable=False)
-    Weather = db.Column(db.String(), nullable=False)
-    Workday = db.Column(db.Boolean(), nullable=False)
-    Temperature = db.Column(db.Float(), nullable=False)
-    Atemperature = db.Column(db.Float(), nullable=False)
-    Humidity = db.Column(db.Float(), nullable=False)
-    Windspeed = db.Column(db.Float(), nullable=False)
-    Predicted = db.Column(db.Float(), nullable=False)
+    datetime = db.Column(db.String(), nullable=False)
+    season = db.Column(db.String(), nullable=False)
+    weather = db.Column(db.String(), nullable=False)
+    workday = db.Column(db.Boolean(), nullable=False)
+    temperature = db.Column(db.Float(), nullable=False)
+    atemperature = db.Column(db.Float(), nullable=False)
+    humidity = db.Column(db.Float(), nullable=False)
+    windspeed = db.Column(db.Float(), nullable=False)
+    count = db.Column(db.Float(), nullable=False)
     
     def __repr__(self):
         return f'Prediction id: {self.id}'
@@ -61,15 +61,15 @@ class Predictions(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'Datetime': self.Datetime,
-            'Season': self.Season,
-            'Weather': self.Weather,
-            'Workday': self.Workday,
-            'Temperature': self.Temperature,
-            'Atemperature': self.Atemperature,
-            'Humidity': self.Humidity,
-            'Windspeed': self.Windspeed,
-            'Predicted': self.Predicted
+            'datetime': self.datetime,
+            'season': self.season,
+            'weather': self.weather,
+            'workday': self.workday,
+            'temperature': self.temperature,
+            'atemperature': self.atemperature,
+            'humidity': self.humidity,
+            'windspeed': self.windspeed,
+            'count': self.count
         }
     
     @classmethod
@@ -82,7 +82,7 @@ class Predictions(db.Model):
     @classmethod
     def get_all_in_list_with_user_name(cls):
         pred_list = []
-        for pred in cls.query.join(Users).with_entities(Users.first_name, cls.Datetime, cls.Season, cls.Weather, cls.Workday, cls.Temperature, cls.Atemperature, cls.Humidity, cls.Windspeed, cls.Predicted).all():
+        for pred in cls.query.join(Users).with_entities(Users.username, cls.datetime, cls.season, cls.weather, cls.workday, cls.temperature, cls.atemperature, cls.humidity, cls.windspeed, cls.count).all():
             pred_list.append(pred)
         return pred_list
     

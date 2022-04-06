@@ -1,6 +1,7 @@
 from xmlrpc.client import DateTime
-
+from apps import db
 from ray import method
+from apps.authentication.models import Predictions
 from apps.home import blueprint
 from decouple import config
 from flask import render_template, request, url_for, flash, redirect
@@ -13,8 +14,8 @@ import sys
 import pickle
 import requests
 import numpy as np
-
 from werkzeug.security import check_password_hash, generate_password_hash
+
 
 model=pickle.load(open('model_charly/BestModel.pkl', 'rb'))
 
@@ -74,7 +75,11 @@ def get_weather_results(city, api_key):
 @blueprint.route('/pred-history', methods=['POST', 'GET'])
 @login_required
 def preds_history_page():
-    return render_template('home/page-preds.html')
+    #Retrieving predictions data for the current user
+    user_id = current_user.get_id()
+    pred = Predictions()
+    prediction_list = pred.find_by_user_id(user_id)
+    return render_template('home/page-pred-history.html', prediction_list = prediction_list)
     
 #Adding routes
 @blueprint.route('/preds', methods=['POST', 'GET'])
@@ -113,12 +118,29 @@ def preds_page():
     prediction = model.predict(df)
     # Predictions(user_id)
     print(prediction)
+    
+    # DB storing
+    pred = Predictions(
+        user_id = current_user.get_id(), 
+        datetime= time, 
+        season= int(season), 
+        weather= float(weather), 
+        workday = workingday, 
+        temperature = temp, 
+        atemperature = atemp, 
+        humidity = humidity, 
+        windspeed = windspeed, 
+        count = int(prediction[0])
+    )
+    pred.save_to_db()
+    
     return render_template('home/page-preds.html', prediction=prediction)
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
 def results():
-    return render_template('home/results.html')
+    
+    return render_template('home/results.html', results = results)
     
 
 @blueprint.route('/weather', methods=['POST', 'GET'])
