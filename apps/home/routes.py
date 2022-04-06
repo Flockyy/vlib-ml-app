@@ -142,7 +142,7 @@ def preds_page():
     )
     pred.save_to_db()
     
-    return render_template('home/page-preds.html', prediction=prediction)
+    return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, )
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
