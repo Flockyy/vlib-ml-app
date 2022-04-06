@@ -14,12 +14,12 @@ import pickle
 import requests
 import numpy as np
 
-import locale
-locale.getlocale()
-('fr_FR', 'UTF-8')
+# import locale
+# locale.getlocale()
+# ('fr_FR', 'UTF-8')
 
-locale.setlocale(locale.LC_TIME, 'fr_FR')
-'fr_FR'
+# locale.setlocale(locale.LC_TIME, 'fr_FR')
+# 'fr_FR'
 
 
 from werkzeug.security import check_password_hash, generate_password_hash
