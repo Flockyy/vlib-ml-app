@@ -432,7 +432,7 @@ input.submit:hover {
 .description {
     position: absolute;
     top: 400px;
-    right: 150px;
+    right: 130px;
 }
 
 .flake:before,
