@@ -171,7 +171,8 @@ input.submit:hover {
 }
 
 .weather-cloudAndSun,.weather-rain{
-    margin-left: 60px;
+    margin-top: 30px;
+    margin-right: 65px;
 }
 
 .moon{
@@ -399,7 +400,7 @@ input.submit:hover {
     height: 40px;
     background:linear-gradient(transparent,lightblue);
     position: absolute;
-    left: 210px;
+    right: 60px;
     top: 50px;
     border-radius: 2px;
     animation: rainning 2s infinite;
@@ -407,20 +408,20 @@ input.submit:hover {
 
 .rain:nth-child(2){
     height: 20px;
-    left: 190px;
-    top: 190px;
+    right: 40px;
+    top: 90px;
 }
 
 .rain:nth-child(3){
     height: 50px;
-    left: 170px;
-    top: 180px;
+    right: 20px;
+    top: 80px;
 }
 
 .rain:nth-child(4){
     height: 25px;
-    left: 150px;
-    top: 185px;
+    right: -10px;
+    top: 85px;
 }
 
 @keyframes rainning{
@@ -432,7 +433,11 @@ input.submit:hover {
 .description {
     position: absolute;
     top: 400px;
+<<<<<<< HEAD
+    right: 75px;
+=======
     right: 130px;
+>>>>>>> a308150358a1eea50b4bd7c9e6ded6f5acc5bc3c
 }
 
 .flake:before,
@@ -468,11 +473,11 @@ input.submit:hover {
 
 .bolt {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 80%;
+  left: 80%;
   margin: -0.25em 0 0 -0.125em;
-  color: #fff;
-  opacity: 0.3;
+  color: rgb(235, 235, 8);
+  opacity: 1;
   animation: lightning 2s linear infinite;
 }
 .bolt:nth-child(2) {
@@ -480,7 +485,7 @@ input.submit:hover {
   height: 0.25em;
   margin: -1.75em 0 0 -1.875em;
   transform: translate(2.5em, 2.25em);
-  opacity: 0.2;
+  opacity: 1;
   animation: lightning 1.5s linear infinite;
 }
 .bolt:before,
@@ -528,7 +533,7 @@ input.submit:hover {
   width: 3.75em;
   height: 3.75em;
   margin: 0.375em 0 0 -2em;
-  background: currentColor;
+  background: rgba(0,0,0,0);
 }
 
 .weatherIcon {

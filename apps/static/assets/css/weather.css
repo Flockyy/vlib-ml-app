@@ -46,9 +46,10 @@
   color: #ffffff;
   height: 500px;
   position: absolute;
-  margin-left: 35% auto;
-  margin-top: 5%;
-  width: 20%;
+  margin-left: 25% auto;
+  margin-top: 5% auto;
+  margin-bottom : auto;
+  width: 30%;
   display: inline;
   left: 55%;
 }
@@ -141,10 +142,10 @@
 .info-side {
   float: left;
   height: 100%;
-  left: 55%;
-  top: 25%;
-  /* margin-left: 50%; */
-  position: absolute;
+  left: 46%;
+  margin-top: 5%;
+  margin-left: 5%;
+  position: relative;
 }
 
 .today-info {
