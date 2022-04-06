@@ -1,4 +1,6 @@
 from xmlrpc.client import DateTime
+
+from ray import method
 from apps.home import blueprint
 from decouple import config
 from flask import render_template, request, url_for, flash, redirect
@@ -68,6 +70,12 @@ def get_weather_results(city, api_key):
     response = requests.get(url)
     return response.json()
 
+#Prediction history route
+@blueprint.route('/pred-history', methods=['POST', 'GET'])
+@login_required
+def preds_history_page():
+    return render_template('home/page-preds.html')
+    
 #Adding routes
 @blueprint.route('/preds', methods=['POST', 'GET'])
 @login_required
