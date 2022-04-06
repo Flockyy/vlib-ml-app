@@ -119,6 +119,7 @@ stylesheets %} {% block content %}
         </button>
       </div>
     </div>
+    <!-- Modal Section -->
     <div id="simpleModal" class="bg-modal">
       <div class="modal-content">
         <h3 class="row2">Enter Parameters</h3>
@@ -184,13 +185,14 @@ stylesheets %} {% block content %}
 
           <div class="row2">
             <div class="col-md-4 px-md-1">
+              <label for="tempre"> Température réelle (°C)</label>
               <input
                 type="text"
                 class="form-control"
                 name="tempre"
                 id="tempre"
                 placeholder="Température réelle(°C)"
-                size="4"
+                value = {{temp}}
               />
             </div>
           </div>
@@ -198,13 +200,14 @@ stylesheets %} {% block content %}
 
           <div class="row2">
             <div class="col-md-4 px-md-1">
+               <label for="atemp"> Température resenti (°C)</label>
               <input
                 type="text"
                 class="form-control"
                 name="atemp"
                 id="atemp"
                 placeholder="Température resenti (°C)"
-                size="4"
+                value = {{feels_like}}
               />
             </div>
           </div>
@@ -212,13 +215,14 @@ stylesheets %} {% block content %}
 
           <div class="row2">
             <div class="col-md-4 px-md-1">
+               <label for="humid"> Humidité (%) </label>
               <input
                 type="text"
                 class="form-control"
                 name="humid"
                 id="humid"
                 placeholder="Humidité (%)"
-                size="4"
+                value = {{humidity}}
               />
             </div>
           </div>
@@ -226,13 +230,14 @@ stylesheets %} {% block content %}
 
           <div class="row2">
             <div class="col-md-4 px-md-1">
+              <label for="vent"> Vitesse du vent (kmph) </label>
               <input
                 type="text"
                 class="form-control"
                 name="vent"
                 id="vent"
                 placeholder="Vitesse du vent (kmph)"
-                size="15"
+                value = {{wind}}
               />
             </div>
           </div>
@@ -266,12 +271,15 @@ stylesheets %} {% block content %}
       </div>
     </div>
     </div>
-    <!-- Modal Section -->
+    <!-- End Modal Section -->
     
+<<<<<<< HEAD
 
     <script>
       // document.getElementById("date-day").textContent = date;
     </script>
+=======
+>>>>>>> a308150358a1eea50b4bd7c9e6ded6f5acc5bc3c
     {% endblock content %} {% block datescript %}
     <script type="text/javascript">
       function SetDate() {
@@ -287,10 +295,12 @@ stylesheets %} {% block content %}
 
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
+        if (minute < 10) minute = "0" + minute;
 
-        var today = year + "-" + month + "-" + day + "T" + hour + ":00";
+        var today = year + "-" + month + "-" + day + "T" + hour + ":" + minute;
         console.log(today);
         document.getElementById("myDate").value = today;
+        console.log(document.getElementById("myDate").value)
       }
     </script>
     {%endblock%} {% block javascripts %}
