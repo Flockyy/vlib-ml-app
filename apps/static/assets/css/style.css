@@ -433,11 +433,7 @@ input.submit:hover {
 .description {
     position: absolute;
     top: 400px;
-<<<<<<< HEAD
-    right: 75px;
-=======
     right: 130px;
->>>>>>> a308150358a1eea50b4bd7c9e6ded6f5acc5bc3c
 }
 
 .flake:before,
@@ -573,25 +569,32 @@ input.submit:hover {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
 }
 
 .styled-table thead tr {
-    background-color: transparent;
+    background-color: rgba(223, 92, 240, 0.794);
     color: #ffffff;
     text-align: center;
+    border-radius: 10px;
+    
 }
 
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
+    border-radius: 10px;
+
 }
 
 .styled-table tbody tr {
     border-bottom: thin solid #dddddd;
+    color: #ffffff;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: #f6cffa;
+    color:rgb(10, 3, 3)
 }
 
 .styled-table tbody tr:last-of-type {

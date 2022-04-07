@@ -22,23 +22,22 @@
               <th scope="col">Windspeed</th>
               <th scope="col">Expected Users</th>
             </tr>
-            {% if prediction_list != None%}
-                {% for pred in prediction_list %}
-                <tr>
-                    <th scope="row">{{pred.id}}</th>
-                    <td>{{pred.datetime}}</td>
-                    <td>{{pred.season}}</td>
-                    <td>{{pred.weather}}</td>
-                    <td>{{pred.workday}}</td>
-                    <td>{{pred.temperature}}</td>
-                    <td>{{pred.humidity}}</td>
-                    <td>{{pred.windspeed}}</td>
-                    <td>{{pred.count}}</td>
-                </tr>
-                {% endfor %}
-            {% endif %}
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {% if prediction_list != None%} {% for pred in prediction_list %}
+            <tr>
+              <th scope="row">{{pred.id}}</th>
+              <td>{{pred.datetime}}</td>
+              <td>{{pred.season}}</td>
+              <td>{{pred.weather}}</td>
+              <td>{{pred.workday}}</td>
+              <td>{{pred.temperature}}</td>
+              <td>{{pred.humidity}}</td>
+              <td>{{pred.windspeed}}</td>
+              <td>{{pred.count}}</td>
+            </tr>
+            {% endfor %} {% endif %}
+          </tbody>
         </table>
       </div>
       <div class="card-body"></div>
