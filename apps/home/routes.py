@@ -10,7 +10,6 @@ import pickle
 import pandas as pd
 from datetime import datetime, date
 import sys
-import pickle
 import requests
 import numpy as np
 
@@ -143,11 +142,7 @@ def preds_page():
     )
     pred.save_to_db()
     
-<<<<<<< HEAD
-    return render_template('home/page-pred-history.html', prediction=prediction)
-=======
     return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, )
->>>>>>> 8aa66d7e52b4105a5487a661e34fb777a305a185
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
