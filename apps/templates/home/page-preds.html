@@ -6,6 +6,7 @@
 {% endblock stylesheets %} {% block content %}
 
 <div class="row d-flex justify-content-center">
+<<<<<<< HEAD
   <div class="col-md-10">
     <div class="card">
       <div class="card-body d-flex justify-content-center">
@@ -39,8 +40,20 @@
             {% endfor %} {% endif %}
           </tbody>
         </table>
+=======
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header d-flex justify-content-center">
+        Prediction
       </div>
-      <div class="card-body"></div>
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-center">Expected users at {{ date }} : </h5>
+        <p class="card-text d-flex justify-content-center">{{ prediction }}</p>
+        <div class="d-flex justify-content-center">
+          <a href="/results" class="btn btn-primary">Analysis</a>
+        </div>  
+>>>>>>> 8aa66d7e52b4105a5487a661e34fb777a305a185
+      </div>
     </div>
   </div>
 </div>

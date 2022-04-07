@@ -12,13 +12,13 @@
           </a>
         </div> -->
     <ul class="nav">
-      <li class="{% if 'home_weather' in segment %} active {% endif %}">
+      <li class="{% if '/weather' in segment %} active {% endif %}">
         <a href="/weather">
           <i class="tim-icons icon-chart-pie-36"></i>
           <p>Weather</p>
         </a>
       </li>
-      <li class="{% if 'page-preds' in segment %} active {% endif %}">
+      <li class="{% if '/pred-history' in segment %} active {% endif %}">
         <a href="/pred-history">
           <i class="tim-icons icon-atom"></i>
           <p>Predictions History</p>
@@ -27,7 +27,7 @@
       <li class="{% if 'index' in segment %} active {% endif %}">
         <a href="/">
           <i class="tim-icons icon-pin"></i>
-          <p>Clustering Analysis</p>
+          <p>Analysis</p>
         </a>
       </li>
       <!-- <li class="{% if 'notifications' in segment %} active {% endif %}">
