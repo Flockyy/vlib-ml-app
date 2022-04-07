@@ -14,3 +14,4 @@ Werkzeug~=2.0.0
 pandas
 requests
 sklearn
+lightgbm
