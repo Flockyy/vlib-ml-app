@@ -1,17 +1,13 @@
-from xmlrpc.client import DateTime
-from apps import db
 from apps.authentication.models import Predictions
 from apps.home import blueprint
 from decouple import config
-from flask import render_template, request, url_for, flash, redirect
-from flask_login import login_required, login_user, logout_user, current_user
+from flask import render_template, request
+from flask_login import login_required, current_user
 from jinja2 import TemplateNotFound
 import pickle
 import pandas as pd
 from datetime import datetime, date
-import sys
 import requests
-import numpy as np
 
 # import locale
 # locale.getlocale()
