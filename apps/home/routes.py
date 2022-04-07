@@ -8,24 +8,19 @@ import pickle
 import pandas as pd
 from datetime import datetime, date
 import requests
-
+import json
 # import locale
+
 # locale.getlocale()
 # ('fr_FR', 'UTF-8')
-
 # locale.setlocale(locale.LC_TIME, 'fr_FR')
 # 'fr_FR'
-
-
-from werkzeug.security import check_password_hash, generate_password_hash
-
 
 model=pickle.load(open('model_charly/BestModel.pkl', 'rb'))
 
 @blueprint.route('/index')
 @login_required
 def index():
-
     return render_template('home/index.html', segment='index')
 
 @blueprint.route('/<template>')
@@ -79,21 +74,25 @@ def get_weather_results(city, api_key):
 @blueprint.route('/pred-history', methods=['POST', 'GET'])
 @login_required
 def preds_history_page():
+
     #Retrieving predictions data for the current user
     user_id = current_user.get_id()
     pred = Predictions()
     prediction_list = pred.find_by_user_id(user_id)
-    return render_template('home/page-pred-history.html', prediction_list = prediction_list)
+
+    return render_template('home/page-pred-history.html', prediction_list = prediction_list, segment = 'pred-history')
     
 #Adding routes
 @blueprint.route('/preds', methods=['POST', 'GET'])
 @login_required
 def preds_page():
+
     date = pd.to_datetime(request.form['Date'])
     time = date.date()
     difference = (pd.to_datetime(time) - pd.to_datetime(2012-12-19)).days
     season = request.form['Season']
     weather = request.form['weather']
+
     if request.form['day'] == 'Workday':
         workingday = 1
         holiday = 0
@@ -109,6 +108,7 @@ def preds_page():
     windspeed = request.form['vent']
     humidity = request.form['humid']
     atemp = request.form['atemp']
+
     if hour >= 20 or hour <= 8:
         is_night = 1
     else:
@@ -118,15 +118,12 @@ def preds_page():
     variables = list(dictionary.values())
     
     df = pd.DataFrame([variables], columns=dictionary.keys())
-    print(dictionary.keys())
     prediction = model.predict(df)
-    # Predictions(user_id)
-    print(prediction)
     
     # DB storing
     pred = Predictions(
         user_id = current_user.get_id(), 
-        datetime= time, 
+        datetime= str(date), 
         season= int(season), 
         weather= float(weather), 
         workday = workingday, 
@@ -138,19 +135,27 @@ def preds_page():
     )
     pred.save_to_db()
     
-    return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, )
+    return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, segment = 'page-pred')
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
 def results():
     pred = Predictions()
     all_pred_list = pred.get_all_in_list_with_user_name()
-    return render_template('home/results.html', results = all_pred_list)
+    prediction_list = []
+    date_list = []
+
+    for i in  all_pred_list:
+        prediction_list.append(i.count)
+        date_list.append(i.datetime)
+
+    return render_template('home/results.html', preds = json.dumps(prediction_list), dates = json.dumps(date_list), segment = 'results')
     
 
 @blueprint.route('/weather', methods=['POST', 'GET'])
 @login_required
 def weather():
+
     city = 'Lille' #fill in the city logic
     api_key = get_api_key()
     data = get_weather_results(city, api_key)
@@ -162,17 +167,17 @@ def weather():
     temp = '{0:.1f}'.format(data['main']['temp'])
     feels_like = '{0:.2f}'.format(data['main']['feels_like'])
     weather = data['weather'][0]['main']
-    print(weather)
     desc = data['weather'][0]['description'].title()
     humidity = data['main']['humidity']
     wind = data['wind']['speed']
     hr, mi = (time.hour, time.minute)
+
     if hr>=7 and hr<18: 
         time = 'day'
     else:
         time = 'night'
-    print(data)
-    return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city, date=day, day =day_name, desc=desc, humidity=humidity, wind=wind, time=time)
+
+    return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city, date=day, day =day_name, desc=desc, humidity=humidity, wind=wind, time=time, segment = 'page-weather')
 
 @blueprint.route('/cluster', methods=['GET'])
 @login_required

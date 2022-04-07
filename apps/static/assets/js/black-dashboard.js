@@ -51,7 +51,7 @@ var seq2 = 0,
 
 
 
-    $html.addClass('perfect-scrollbar-on');
+    $html.addClass('perfect-scrollbar-off');
   } else {
     $html.addClass('perfect-scrollbar-off');
   }
