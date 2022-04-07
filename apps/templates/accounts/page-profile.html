@@ -10,11 +10,11 @@
 <div class="row">
   <div class="col-md-8">
     <div class="card">
+      <form role="form" method="post" action="">
       <div class="card-header">
         <h5 class="title">Editer le profil</h5>
       </div>
       <div class="card-body">
-        <form>
           <div class="row">
             <div class="col-md-5 pr-md-1">
               <div class="form-group">
@@ -25,13 +25,13 @@
             <div class="col-md-3 px-md-1">
               <div class="form-group">
                 <label>Pseudo</label>
-                <input type="text" class="form-control" value="{{ current_user.username }}">
+                <input class="form-control" id="username_modified" name="username" required="" type="text" value="{{ current_user.username }}" />
               </div>
             </div>
             <div class="col-md-4 pl-md-1">
               <div class="form-group">
                 <label for="exampleInputEmail1">E-mail</label>
-                <input type="email" class="form-control" value="{{ current_user.email }}">
+                <input class="form-control" id="email_modified" name="email" required="" type="text" value="{{ current_user.email }}" />
               </div>
             </div>
           </div>
@@ -39,13 +39,13 @@
             <div class="col-md-6 pr-md-1">
               <div class="form-group">
                 <label>Prénom</label>
-                <input type="text" class="form-control" placeholder="Company" value="Mike">
+                <input class="form-control" id="fname_modified" name="fname" required="" type="text" value="{{ current_user.fname }}" />
               </div>
             </div>
             <div class="col-md-6 pl-md-1">
               <div class="form-group">
                 <label>Nom</label>
-                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                <input class="form-control" id="lname_modified" name="lname" required="" type="text" value={{ current_user.lname }} />
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Addresse</label>
-                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                <input class="form-control" id="address_modified" name="address" required="" type="text" value={{ current_user.address }} />
               </div>
             </div>
           </div>
@@ -61,19 +61,19 @@
             <div class="col-md-4 pr-md-1">
               <div class="form-group">
                 <label>Ville</label>
-                <input type="text" class="form-control" placeholder="City" value="Mike">
+                <input class="form-control" id="city_modified" name="city" required="" type="text" value={{ current_user.city }} />
               </div>
             </div>
             <div class="col-md-4 px-md-1">
               <div class="form-group">
                 <label>Pays</label>
-                <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                <input class="form-control" id="country_modified" name="country" required="" type="text" value={{ current_user.country }} />
               </div>
             </div>
             <div class="col-md-4 pl-md-1">
               <div class="form-group">
                 <label>Code postal</label>
-                <input type="number" class="form-control" placeholder="ZIP Code">
+                <input class="form-control" id="postcode_modified" name="postcode" required="" type="text" value={{ current_user.postcode }} />
               </div>
             </div>
           </div>
@@ -81,15 +81,15 @@
             <div class="col-md-8">
               <div class="form-group">
                 <label>A propos de moi</label>
-                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Blablabla</textarea>
+                <input class="form-control" id="aboutme_modified" name="aboutme" placeholder="Here can be your description" value={{ current_user.aboutme }}>
               </div>
             </div>
           </div>
-        </form>
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-fill btn-primary">Sauvegarder</button>
+        <button type="submit" name='modify' class="btn btn-fill btn-primary">Sauvegarder</button>
       </div>
+      </form>
     </div>
   </div>
   <div class="col-md-4">
@@ -102,7 +102,7 @@
             <div class="block block-three"></div>
             <div class="block block-four"></div>
             <a href="javascript:void(0)">
-              <img class="avatar" src="/static/assets/img/cloudyface.jpg" alt="Bill Gates photo - when buys a Linux.">
+              <img class="avatar" src="/static/assets/img/cloudyface.jpg" alt="My picture">
               <h5 class="title">
                 {{ current_user.username }}
               </h5>

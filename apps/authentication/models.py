@@ -13,12 +13,12 @@ class Users(db.Model, UserMixin):
     email = db.Column(db.String(64), unique=True)
     city = db.Column(db.String(64), unique=False)
     password = db.Column(db.LargeBinary)
-    # fname = db.Column(db.String, nullable=True)
-    # lname = db.Column(db.String, nullable=True)
-    # address = db.Column(db.String, nullable=True)
-    # country = db.Column(db.String, nullable=True)
-    # postcode = db.Column(db.String, nullable=True)
-    # aboutme = db.Column(db.String, nullable=True)
+    fname = db.Column(db.String, nullable=True)
+    lname = db.Column(db.String, nullable=True)
+    address = db.Column(db.String, nullable=True)
+    country = db.Column(db.String, nullable=True)
+    postcode = db.Column(db.String, nullable=True)
+    aboutme = db.Column(db.String, nullable=True)
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
@@ -43,29 +43,15 @@ class Users(db.Model, UserMixin):
             'email': self.email,
             'city': self.city,
             'password' : self.password,
-            # 'fname' : self.fname,
-            # 'lname' : self.lname,
-            # 'address' : self.address,
-            # 'country' : self.country,
-            # 'postcode' : self.postcode,
-            # 'aboutme': self.aboutme
+            'fname' : self.fname,
+            'lname' : self.lname,
+            'address' : self.address,
+            'country' : self.country,
+            'postcode' : self.postcode,
+            'aboutme': self.aboutme
             }
 
-    # @classmethod
-    # def find_by_user_id(cls,id):
-    #     return cls.query.filter_by(id=id).first()
 
-    # @classmethod
-    # def get_all(cls):
-    #     return cls.query.filter_by(is_admin = False).with_entities(Users.id, Users.promo).all()
-    
-    # def save_to_db(self):
-    #     db.session.add(self)
-    #     db.session.commit()
-
-    # def delete_from_db(self):
-    #     db.session.delete(self)
-    #     db.session.commit()
 class Predictions(db.Model):
     
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
