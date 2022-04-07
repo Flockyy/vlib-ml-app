@@ -1,6 +1,5 @@
 from xmlrpc.client import DateTime
 from apps import db
-from ray import method
 from apps.authentication.models import Predictions
 from apps.home import blueprint
 from decouple import config
