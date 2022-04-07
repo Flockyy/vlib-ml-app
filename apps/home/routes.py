@@ -1,28 +1,24 @@
-from xmlrpc.client import DateTime
-
-from ray import method
+from apps.authentication.models import Predictions
 from apps.home import blueprint
 from decouple import config
-from flask import render_template, request, url_for, flash, redirect
-from flask_login import login_required, login_user, logout_user, current_user
+from flask import render_template, request
+from flask_login import login_required, current_user
 from jinja2 import TemplateNotFound
 import pickle
 import pandas as pd
 from datetime import datetime, date
-import sys
-import pickle
 import requests
-import numpy as np
 
-import locale
-locale.getlocale()
-('fr_FR', 'UTF-8')
+# import locale
+# locale.getlocale()
+# ('fr_FR', 'UTF-8')
 
-locale.setlocale(locale.LC_TIME, 'fr_FR')
-'fr_FR'
+# locale.setlocale(locale.LC_TIME, 'fr_FR')
+# 'fr_FR'
 
 
 from werkzeug.security import check_password_hash, generate_password_hash
+
 
 model=pickle.load(open('model_charly/BestModel.pkl', 'rb'))
 
@@ -83,7 +79,11 @@ def get_weather_results(city, api_key):
 @blueprint.route('/pred-history', methods=['POST', 'GET'])
 @login_required
 def preds_history_page():
-    return render_template('home/page-preds.html')
+    #Retrieving predictions data for the current user
+    user_id = current_user.get_id()
+    pred = Predictions()
+    prediction_list = pred.find_by_user_id(user_id)
+    return render_template('home/page-pred-history.html', prediction_list = prediction_list)
     
 #Adding routes
 @blueprint.route('/preds', methods=['POST', 'GET'])
@@ -122,12 +122,30 @@ def preds_page():
     prediction = model.predict(df)
     # Predictions(user_id)
     print(prediction)
-    return render_template('home/page-preds.html', prediction=prediction)
+    
+    # DB storing
+    pred = Predictions(
+        user_id = current_user.get_id(), 
+        datetime= time, 
+        season= int(season), 
+        weather= float(weather), 
+        workday = workingday, 
+        temperature = temp, 
+        atemperature = atemp, 
+        humidity = humidity, 
+        windspeed = windspeed, 
+        count = int(prediction[0])
+    )
+    pred.save_to_db()
+    
+    return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, )
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
 def results():
-    return render_template('home/results.html')
+    pred = Predictions()
+    all_pred_list = pred.get_all_in_list_with_user_name()
+    return render_template('home/results.html', results = all_pred_list)
     
 
 @blueprint.route('/weather', methods=['POST', 'GET'])
@@ -156,7 +174,7 @@ def weather():
     print(data)
     return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city, date=day, day =day_name, desc=desc, humidity=humidity, wind=wind, time=time)
 
-@blueprint.route('/city', methods=['POST', 'GET'])
+@blueprint.route('/cluster', methods=['GET'])
 @login_required
-def city_info():
-    return render_template('index.html')
+def cluster():
+    return render_template('clustering.html')

@@ -7,37 +7,18 @@
 
 <div class="row d-flex justify-content-center">
   <div class="col-md-8">
-    <div class="card card-profile">
-      <div class="card-body d-flex justify-content-center">
-        <table class="styled-table">
-          <thead>
-            <tr>
-              <th scope="col">N°</th>
-              <th scope="col">Date</th>
-              <th scope="col">Season</th>
-              <th scope="col">Weather</th>
-              <th scope="col">Workday/Holiday</th>
-              <th scope="col">Temperature</th>
-              <th scope="col">Humidity</th>
-              <th scope="col">Windspeed</th>
-              <th scope="col">Expected Users</th>
-            </tr>
-            <tr>
-              <th scope="row">1st Prediction</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>{{prediction[0]}}</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+    <div class="card">
+      <div class="card-header d-flex justify-content-center">
+        Prediction
       </div>
-      <div class="card-body"></div>
+      <div class="card-body">
+        <h5 class="card-title d-flex justify-content-center">Expected users at {{ date }} : </h5>
+        <p class="card-text d-flex justify-content-center">{{ prediction }}</p>
+        <div class="d-flex justify-content-center">
+          <a href="/" class="btn btn-primary">Analysis</a>
+          <a href="/pred-history" class="btn btn-primary">Historique</a>
+        </div>  
+      </div>
     </div>
   </div>
 </div>
