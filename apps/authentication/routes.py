@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, request, url_for, flash
 from flask_login import (
     current_user,
     login_user,
@@ -7,7 +7,7 @@ from flask_login import (
 
 from apps import db, login_manager
 from apps.authentication import blueprint
-from apps.authentication.forms import LoginForm, CreateAccountForm
+from apps.authentication.forms import LoginForm, CreateAccountForm, ModifyProfileForm
 from apps.authentication.models import Users
 
 from apps.authentication.util import verify_pass
@@ -59,6 +59,8 @@ def register():
         username = request.form['username']
         email = request.form['email']
         city = request.form['city']
+        password = request.form['password']
+
         
         # Check usename exists
         user = Users.query.filter_by(username=username).first()
@@ -89,6 +91,38 @@ def register():
         return render_template( 'accounts/register.html',
                                 segment = 'register', 
                                 form=create_account_form)
+
+
+@blueprint.route('/page-profile', methods=['GET', 'POST'])
+def modify():
+    modify_form = ModifyProfileForm(request.form)
+
+    if  request.method == 'post':
+
+        username = request.form['username']
+        email = request.form['email']
+        city = request.form['city']
+        password = request.form['password']
+        fname = request.form['fname']
+        lname = request.form['lname']
+        address = request.form['address']
+        country = request.form['country']
+        postcode = request.form['postcode']
+        aboutme = request.form['aboutme']
+
+        user = Users(**request.form)
+        db.session.update(user)
+        db.session.commit()
+
+        flash(f"Votre profil a été modifié",category="secondary")
+        return render_template('accounts/page-profile.html', segment ='modify', form=modify_form)
+
+    else:
+
+        flash(f"Echec dans l'enregistrement de vos données",category="primary")
+        return render_template('accounts/page-profile.html')
+        
+
 
 
 @blueprint.route('/logout')
