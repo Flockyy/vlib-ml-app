@@ -13,12 +13,14 @@ import sys
 import pickle
 import requests
 import numpy as np
-import locale
 
-locale.getlocale()
-('fr_FR', 'UTF-8')
+# import locale
+# locale.getlocale()
+# ('fr_FR', 'UTF-8')
 
-locale.setlocale(locale.LC_TIME, 'fr_FR')
+# locale.setlocale(locale.LC_TIME, 'fr_FR')
+# 'fr_FR'
+
 
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -141,7 +143,11 @@ def preds_page():
     )
     pred.save_to_db()
     
+<<<<<<< HEAD
+    return render_template('home/page-pred-history.html', prediction=prediction)
+=======
     return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, )
+>>>>>>> 8aa66d7e52b4105a5487a661e34fb777a305a185
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
@@ -177,7 +183,7 @@ def weather():
     print(data)
     return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city, date=day, day =day_name, desc=desc, humidity=humidity, wind=wind, time=time)
 
-@blueprint.route('/city', methods=['POST', 'GET'])
+@blueprint.route('/cluster', methods=['GET'])
 @login_required
-def city_info():
-    return render_template('index.html')
+def cluster():
+    return render_template('clustering.html')
