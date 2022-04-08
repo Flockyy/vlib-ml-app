@@ -12,4 +12,4 @@ Les données météorologique nécessaire son récoltées via l'api : https://op
 L'application dispose d'une gestion (simple) d'authentification, 
 des features relatives à la prédiction citées disponible via une sidebar ainsi que d'une gestion de profil.
 
-Ce projet a été réaliser en groupe de trois : 
+Ce projet a été réaliser en groupe de trois : ife-oluwa, 
