@@ -2,11 +2,6 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
-<<<<<<< HEAD
-<div class="row d-flex justify-content-center">
-  <div class="col-md-8">
-    <div class="card">
-=======
 
 <div class="row">
   <div class="col-lg-12">
@@ -25,13 +20,11 @@
   </div>
 </div>
 <div class="row">
-
   <div class="col-12">
     <div class="card card-chart">
       <div class="card-header ">
         <div class="row">
           <div class="col-sm-6 text-left">
-            <!-- <h5 class="card-category">Total users</h5> -->
             <h2 class="card-title"><i class="tim-icons icon-paper text-primary"></i>Total users</h2>
           </div>
           <div class="col-sm-6">
@@ -54,21 +47,20 @@
           </div>
         </div>
       </div>
->>>>>>> 41a9ee7d0f4bf8516c2b22c9205f0207e0312a52
       <div class="card-body">
-        <h3 class="card-title d-flex justify-content-center">
-          {% if minutes < 10 %}
-          Predicted number of users on {{ day }}, {{ day_number }} {{ month }} {{year}} at {{hour}}:0{{minutes}}:
-          {% elif minutes > 10 %}
-          Predicted number of users on {{ day }}, {{ day_number }} {{ month }} {{year}} at {{hour}}:{{minutes}}:
-          {%endif%}
-        </h3>
-<<<<<<< HEAD
-        <p class="card-text d-flex justify-content-center"><h2 class="card-text d-flex justify-content-center">{{ prediction }}</h2></p>
-        <div class="d-flex justify-content-center">
-          <a href="/" class="btn btn-primary">Analysis</a> &nbsp;
-          <a href="/pred-history" class="btn btn-primary">Historique</a>
-=======
+        <div class="chart-area">
+          <canvas id="chartBig1"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <div class="card card-chart">
+      <div class="card-header">
+        <!-- <h5 class="card-category">Last 7 days</h5> -->
+        <h3 class="card-title"><i class="tim-icons icon-sound-wave text-primary"></i> Last 7 days</h3>
       </div>
       <div class="card-body">
         <div class="chart-area">
@@ -94,15 +86,11 @@
     <div class="card card-chart">
       <div class="card-header">
         <!-- <h5 class="card-category">Unregistered users</h5> -->
-        <h3 class="card-title">
-          <i class="tim-icons icon-sound-wave text-success"></i>Casual users the
-          last 5 months
-        </h3>
+        <h3 class="card-title"><i class="tim-icons icon-sound-wave text-success"></i>Casual users the last 5 months</h3>
       </div>
       <div class="card-body">
         <div class="chart-area">
           <canvas id="chartLineGreen"></canvas>
->>>>>>> 41a9ee7d0f4bf8516c2b22c9205f0207e0312a52
         </div>
       </div>
     </div>
