@@ -13,3 +13,5 @@ L'application dispose d'une gestion (simple) d'authentification,
 des features relatives à la prédiction citées disponible via une sidebar ainsi que d'une gestion de profil.
 
 Ce projet a été réaliser en groupe de trois : ife-oluwa, CharlySimplon et moi même
+
+Merci à eux
