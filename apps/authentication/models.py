@@ -50,8 +50,7 @@ class Users(db.Model, UserMixin):
             'postcode' : self.postcode,
             'aboutme': self.aboutme
             }
-
-
+            
 class Predictions(db.Model):
     
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
@@ -105,6 +104,10 @@ class Predictions(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+    
+    def last_prediction_by_user_id(cls, user_id):
+        prediction = cls.query.filter_by(user_id=user_id).first().json()
+        return prediction
 
 @login_manager.user_loader
 def user_loader(id):

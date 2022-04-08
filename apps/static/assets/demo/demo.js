@@ -300,7 +300,6 @@ demo = {
       }
     };
 
-
     gradientBarChartConfiguration = {
       maintainAspectRatio: false,
       legend: {
@@ -409,11 +408,7 @@ demo = {
         pointHoverRadius: 4,
         pointHoverBorderWidth: 15,
         pointRadius: 4,
-        data: [28290
-          ,27590
-          ,20928
-          ,15198
-         ,9621],
+        data: [28290, 27590, 20928, 15198, 9621],
       }]
     };
 
@@ -425,18 +420,7 @@ demo = {
     });
 
     var chart_labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    var chart_data = [23552, 
-      32844, 
-      38735, 
-      50517, 
-      79713,
-      89776,
-      92848
-      ,83296
-      ,79104
-      ,79522
-      ,70889
-      ,61183];
+    var chart_data = [23552, 32844,  38735, 50517, 79713, 89776, 92848, 83296, 79104, 79522, 70889, 61183];
 
     var ctx = document.getElementById("chartBig1").getContext('2d');
 
@@ -479,18 +463,7 @@ demo = {
     });
     
     $("#1").click(function() {
-      var chart_data = [56332
-        ,66269
-        ,94766
-        ,116885
-        ,120434
-        ,130957
-        ,121769
-        ,130220
-        ,133425
-        ,127912
-        ,105551
-        ,98977];
+      var chart_data = [56332, 66269, 94766, 116885, 120434, 130957, 121769, 130220, 133425, 127912, 105551, 98977];
       var data = myChartData.config.data;
       data.datasets[0].data = chart_data;
       data.labels = chart_labels;
@@ -522,7 +495,7 @@ demo = {
         display: false
       },
       data: {
-        labels: ['Printemps', 'Eté', 'Automne', 'Hiver'],
+        labels: ['Hiver', 'Printemps', 'Eté', 'Automne'],
         datasets: [{
           label: "Countries",
           fill: true,
