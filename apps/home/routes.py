@@ -1,7 +1,7 @@
 from apps.authentication.models import Predictions
 from apps.home import blueprint
 from decouple import config
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from jinja2 import TemplateNotFound
 import pickle
@@ -94,7 +94,7 @@ def preds_page():
     difference = (pd.to_datetime(time) - pd.to_datetime(2012-12-19)).days
     season = request.form['Season']
     weather = request.form['weather']
-    if request.form['day'] == 'Workday':
+    if request.form['day'] == 'Work day':
         workingday = 1
         holiday = 0
     else:
@@ -103,8 +103,11 @@ def preds_page():
     
     year = date.year
     month = date.month
+    month_name = date.month_name()
     day = date.day_name()
     hour = date.hour
+    minutes = date.minute
+    day_number = date.day
     temp = request.form['tempre']
     windspeed = request.form['vent']
     humidity = request.form['humid']
@@ -118,18 +121,18 @@ def preds_page():
     variables = list(dictionary.values())
     
     df = pd.DataFrame([variables], columns=dictionary.keys())
-    print(dictionary.keys())
+    print(minutes)
     prediction = model.predict(df)
     # Predictions(user_id)
-    print(prediction)
+    print(workingday)
     
     # DB storing
     pred = Predictions(
         user_id = current_user.get_id(), 
         datetime= time, 
         season= int(season), 
-        weather= float(weather), 
-        workday = workingday, 
+        weather= int(weather), 
+        workday = request.form['day'], 
         temperature = temp, 
         atemperature = atemp, 
         humidity = humidity, 
@@ -138,7 +141,7 @@ def preds_page():
     )
     pred.save_to_db()
     
-    return render_template('home/page-preds.html', date = date, prediction = int(prediction[0]), hour = hour, )
+    return render_template('home/results.html', date = date, prediction = int(prediction[0]), hour = hour, day=day, year=year, minutes = minutes, month=month_name, day_number = day_number)
 
 @blueprint.route('/results', methods=['GET', 'POST'])
 @login_required
@@ -174,7 +177,10 @@ def weather():
     print(data)
     return render_template('home/home_weather.html', weather=weather, feels_like=feels_like, temp=temp, city = city, date=day, day =day_name, desc=desc, humidity=humidity, wind=wind, time=time)
 
-@blueprint.route('/cluster', methods=['GET'])
-@login_required
-def cluster():
-    return render_template('clustering.html')
+
+@blueprint.route('/delete_record')
+def delete_record():
+    """Delete prediction records in BDD"""
+    record_id = request.args.get('id')
+    Predictions.query.filter_by(id=record_id).first().delete_from_db()
+    return redirect(url_for('preds_history_page'))

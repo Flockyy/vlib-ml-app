@@ -2,94 +2,21 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %} {% block content %}
-<div class="row">
-  <div class="col-12">
-    <div class="card card-chart">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-sm-6 text-left">
-            <!-- <h5 class="card-category">Total users</h5> -->
-            <h2 class="card-title">
-              <i class="tim-icons icon-paper text-primary"></i>Total users
-            </h2>
-          </div>
-          <div class="col-sm-6">
-            <div
-              class="btn-group btn-group-toggle float-right"
-              data-toggle="buttons"
-            >
-              <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                <input type="radio" name="options" checked />
-                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
-                  >2011</span
-                >
-                <span class="d-block d-sm-none">
-                  <i class="tim-icons icon-single-02"></i>
-                </span>
-              </label>
-              <label class="btn btn-sm btn-primary btn-simple" id="1">
-                <input type="radio" class="d-none d-sm-none" name="options" />
-                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block"
-                  >2012</span
-                >
-                <span class="d-block d-sm-none">
-                  <i class="tim-icons icon-gift-2"></i>
-                </span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
       <div class="card-body">
-        <div class="chart-area">
-          <canvas id="chartBig1"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-4">
-    <div class="card card-chart">
-      <div class="card-header">
-        <!-- <h5 class="card-category">Last 7 days</h5> -->
-        <h3 class="card-title">
-          <i class="tim-icons icon-sound-wave text-primary"></i> Last 7 days
+        <h3 class="card-title d-flex justify-content-center">
+          {% if minutes < 10 %}
+          Predicted number of users on {{ day }}, {{ day_number }} {{ month }} {{year}} at {{hour}}:0{{minutes}}:
+          {% elif minutes > 10 %}
+          Predicted number of users on {{ day }}, {{ day_number }} {{ month }} {{year}} at {{hour}}:{{minutes}}:
+          {%endif%}
         </h3>
-      </div>
-      <div class="card-body">
-        <div class="chart-area">
-          <canvas id="chartLinePurple"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="card card-chart">
-      <div class="card-header">
-        <h3 class="card-title">
-          <i class="tim-icons icon-chart-bar-32 text-info"></i>Users by season
-        </h3>
-      </div>
-      <div class="card-body">
-        <div class="chart-area">
-          <canvas id="CountryChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4">
-    <div class="card card-chart">
-      <div class="card-header">
-        <!-- <h5 class="card-category">Unregistered users</h5> -->
-        <h3 class="card-title">
-          <i class="tim-icons icon-sound-wave text-success"></i>Casual users the
-          last 5 months
-        </h3>
-      </div>
-      <div class="card-body">
-        <div class="chart-area">
-          <canvas id="chartLineGreen"></canvas>
+        <p class="card-text d-flex justify-content-center"><h2 class="card-text d-flex justify-content-center">{{ prediction }}</h2></p>
+        <div class="d-flex justify-content-center">
+          <a href="/" class="btn btn-primary">Analysis</a> &nbsp;
+          <a href="/pred-history" class="btn btn-primary">Historique</a>
         </div>
       </div>
     </div>

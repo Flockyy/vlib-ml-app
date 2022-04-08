@@ -59,7 +59,7 @@ class Predictions(db.Model):
     datetime = db.Column(db.String(), nullable=False)
     season = db.Column(db.String(), nullable=False)
     weather = db.Column(db.String(), nullable=False)
-    workday = db.Column(db.Boolean(), nullable=False)
+    workday = db.Column(db.String(), nullable=False)
     temperature = db.Column(db.Float(), nullable=False)
     atemperature = db.Column(db.Float(), nullable=False)
     humidity = db.Column(db.Float(), nullable=False)
